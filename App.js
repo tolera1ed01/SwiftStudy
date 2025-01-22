@@ -1,14 +1,10 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-import LoginScreen from "./Screens/LoginScreen";
-import styles from "./stylesheet";
+import { createStackNavigator } from "@react-navigation/stack";
+import Appstack from './Stacks/Appstack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <LoginScreen></LoginScreen>
-      <StatusBar style="auto" />
-    </View>
+    <Appstack />
   );
 }
-

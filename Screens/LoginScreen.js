@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, SafeAreaView, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import styles from "../stylesheet";
+import { useNavigation } from "@react-navigation/native";
 
 
 
@@ -8,6 +9,9 @@ import styles from "../stylesheet";
 
 
 const LoginScreen = () => {
+
+  const navigation = useNavigation();
+
   return (
       <SafeAreaView style={styles.container}> 
         <Text style={styles.appName}>Welcome to SwiftStudy!</Text>
@@ -15,12 +19,26 @@ const LoginScreen = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputBox}
-            placeholder="Username"
+            placeholder="Email"
           />
           <TextInput
             style={styles.inputBox}
             placeholder="Password"
           />
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.signUpText}>
+          <Text>Don't have an account? </Text>
+          <TouchableOpacity 
+            onPress={() => navigation.navigate("SignUp")} 
+            style={{ marginLeft: "25%" }} 
+          >
+            <Text style={[{ color: "#1E90FF" }]}>Sign up</Text> 
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
   );

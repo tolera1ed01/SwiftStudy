@@ -4,37 +4,43 @@ import { StyleSheet, Text, View } from "react-native";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    width: windowWidth * 1,
-    height: windowHeight * 1.2,
+    width: "100%",
+    height: "100%",
+    maxWidth: windowWidth * 1,
+    maxHeight: windowHeight * 1.04,
+    paddingHorizontal: "10%",
   },
   appName: {
-    bottom: 200,
+    position: "absolute",
+    bottom: windowHeight * 0.875,
     fontSize: 24,
     fontWeight: "500",
     fontFamily: "",
     padding: 10,
-    borderBottomWidth: 2,
     width: "100%",
+    textAlign: "center",
+    borderBottomWidth: 2,
   },
   imageContainer: {
-    justifyContent: 'center', 
-    alignItems: 'center',
-    position: 'absolute',
+    justifyContent: "center", 
+    alignItems: "center",
+    position: "absolute",
     bottom: 400,
     left: 0,
     right: 0,
   },
   loginTitle: {
     position: "relative", 
-    marginTop: "50%",
-    bottom: 225, 
-    right: 100, 
+    marginTop: "80%",
+    bottom: "30%", 
+    right: "40%", 
     fontSize: 45, 
     fontWeight: "bold", 
     fontFamily: "",
@@ -50,12 +56,35 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     position: "relative",
-    bottom: 200,
-    width: "350",
+    bottom: "25%",
+    width: windowWidth * 0.85,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-
+  },
+  button: {
+    backgroundColor: '#2987cf',
+    borderRadius: 50, 
+    padding: 20,
+    width: "125",
+    height: "70",
+    textAlign: "center",
+  },
+  buttonText: {
+    color: '#fff', 
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 20,
+  },
+  buttonContainer: {
+    position: "relative",
+    left: windowWidth * 0.2,
+    bottom: windowHeight * 0.15,
+  },
+  signUpText: {
+    color: "#A9A9A9",
+    position: "absolute",
+    top: "90%",
   },
 });
 
