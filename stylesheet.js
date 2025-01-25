@@ -4,8 +4,6 @@ import { StyleSheet, Text, View } from "react-native";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
