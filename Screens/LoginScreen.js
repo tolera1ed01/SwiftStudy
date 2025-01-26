@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import styles from "../stylesheet";
 import { useNavigation } from "@react-navigation/native";
-
+import SignUpScreen from "./SignUpScreen";
 
 
 
@@ -34,10 +34,10 @@ const LoginScreen = () => {
         <View style={styles.signUpText}>
           <Text>Don't have an account? </Text>
           <TouchableOpacity 
-            onPress={() => navigation.navigate("SignUp")} 
+            onPress={() => navigation.navigate("SignUpScreen")} 
             style={{ marginLeft: "25%" }} 
           >
-            <Text style={[{ color: "#1E90FF" }]}>Sign up</Text> 
+            <Text style={[{ color: "#2F92B8" }]}>Sign up</Text> 
           </TouchableOpacity>
         </View>
       </SafeAreaView>
