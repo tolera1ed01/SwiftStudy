@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
   },
   loginTitle: {
     position: "relative", 
-    marginTop: "80%",
+    marginTop: "70%",
     bottom: "30%", 
     right: "40%", 
-    fontSize: 45, 
     fontWeight: "bold", 
     fontFamily: "",
+    fontSize: 40,
   },
   inputBox: {
     backgroundColor: "#f5f5f5",
@@ -83,6 +83,25 @@ const styles = StyleSheet.create({
     color: "#A9A9A9",
     position: "absolute",
     top: "90%",
+  },
+  BackArrow: {
+    position: "absolute",
+    bottom: windowHeight * 0.875,
+    fontSize: 24,
+    fontWeight: "500",
+    fontFamily: "",
+    padding: 10,
+    width: "110%",
+    textAlign: "center",
+  },
+  createAccountTitle: {
+    position: "relative", 
+    marginTop: "70%",
+    bottom: "30%", 
+    right: "20%", 
+    fontWeight: "bold", 
+    fontFamily: "",
+    fontSize: 35,
   },
 });
 
