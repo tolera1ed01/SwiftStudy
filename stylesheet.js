@@ -117,6 +117,12 @@ const styles = StyleSheet.create({
     fontSize: 35,
     marginLeft: "5%",
   },
+  eyeIcon: {
+    position: "absolute",
+    zIndex: 1,
+    right: windowWidth * 0.1,
+    bottom: "6%",
+  },
 });
 
 export default styles;
