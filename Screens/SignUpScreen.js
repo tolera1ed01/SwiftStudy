@@ -2,18 +2,19 @@ import React from "react";
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import styles from "../stylesheet";
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 
-const SignUpScreen = () => {
+export default function SignUpScreen() {
 
     const navigation = useNavigation();
+    const { colors } = useTheme();
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <TouchableOpacity style={styles.BackArrow} 
       onPress={() => { navigation.goBack("LoginScreen") }}>
-      <AntDesign name="arrowleft" size={30} color="#2F92B8" />
+      <AntDesign name="arrowleft" size={30} color={colors.primary} />
     </TouchableOpacity>
     <Text style={styles.createAccountTitle}>Create Account</Text>
     <View style={styles.inputContainer}>
@@ -38,5 +39,3 @@ const SignUpScreen = () => {
     </SafeAreaView>
   );
 }
-
-export default SignUpScreen;

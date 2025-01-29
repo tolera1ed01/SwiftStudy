@@ -1,8 +1,28 @@
 import { Dimensions } from 'react-native';
 import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer, DefaultTheme, useNavigation, DarkTheme, } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const SwiftstudyTheme = {
+  ...DefaultTheme,
+  DarkTheme: true,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#00001C",
+    primary: "#00c3e6",
+    card: "#000022",
+    text: "#F6F8FF",
+    placeholderText: "#404040",
+  }
+};
+
+export { SwiftstudyTheme };
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +44,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     textAlign: "center",
-    borderBottomWidth: 2,
   },
   imageContainer: {
     justifyContent: "center", 
@@ -44,13 +63,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   inputBox: {
-    backgroundColor: "#f5f5f5",
-    borderColor: "#ccc",
+    borderColor: "#404040",
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 20,
     width: "90%",
     height: "50",
     marginTop: 20,
+    borderWidth: 1.25,
   },
   inputContainer: {
     position: "relative",
@@ -61,7 +80,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    backgroundColor: '#2F92B8',
     borderRadius: 50, 
     padding: 20,
     width: "125",
@@ -80,19 +98,14 @@ const styles = StyleSheet.create({
     bottom: windowHeight * 0.15,
   },
   signUpText: {
-    color: "#A9A9A9",
     position: "absolute",
     top: "90%",
   },
   BackArrow: {
-    position: "absolute",
-    bottom: windowHeight * 0.875,
-    fontSize: 24,
-    fontWeight: "500",
-    fontFamily: "",
-    padding: 10,
-    width: "110%",
-    textAlign: "center",
+    position: "relative",
+    padding: 20,
+    right: windowWidth * 0.4,
+    bottom: windowHeight * 0.1,
   },
   createAccountTitle: {
     position: "relative", 
@@ -102,6 +115,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold", 
     fontFamily: "",
     fontSize: 35,
+    marginLeft: "5%",
   },
 });
 
