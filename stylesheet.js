@@ -80,21 +80,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    borderRadius: 50, 
-    padding: 20,
-    width: "125",
-    height: "70",
-    textAlign: "center",
+    borderRadius: 20, 
+    padding: 17,
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.08,
   },
   buttonText: {
     color: '#fff', 
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 19,
   },
   buttonContainer: {
     position: "relative",
-    left: windowWidth * 0.2,
     bottom: windowHeight * 0.15,
   },
   signUpText: {

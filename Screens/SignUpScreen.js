@@ -3,8 +3,10 @@ import { View, Text, SafeAreaView, TextInput, TouchableOpacity, Alert } from "re
 import styles from "../stylesheet";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation, useTheme } from "@react-navigation/native";
-import { auth } from '../firebaseConfig'; 
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../firebaseConfig'; 
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
+import { doc, setDoc } from "firebase/firestore";
+
 
 export default function SignUpScreen() {
   
@@ -26,6 +28,15 @@ export default function SignUpScreen() {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
         Alert.alert("Signup Successful!", "Account created successfully.");
+      await updateProfile(auth.currentUser, {
+        displayName: username,
+      });
+      await sendEmailVerification(auth.currentUser)
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
+        username: auth.currentUser.displayName || "",
+        email: auth.currentUser.email || "",
+      });
+      navigation.navigate("LoginScreen");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         Alert.alert(

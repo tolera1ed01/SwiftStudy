@@ -30,7 +30,7 @@ export default function LoginScreen() {
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={[styles.button, {backgroundColor: colors.primary }]}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Log in</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.signUpText}>
