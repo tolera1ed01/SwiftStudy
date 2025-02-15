@@ -100,7 +100,7 @@ export default function SignUpScreen() {
 
     </View>
       <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.button, {backgroundColor: colors.primary }]} onPress={signUpHandler}>
+          <TouchableOpacity style={[styles.button, {backgroundColor: colors.primary }, {borderColor: "#00e4e4" }]} onPress={signUpHandler}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
       </View>

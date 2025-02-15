@@ -74,16 +74,17 @@ const styles = StyleSheet.create({
   inputContainer: {
     position: "relative",
     bottom: "25%",
-    width: windowWidth * 0.85,
+    width: windowWidth * 0.9,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
   button: {
     borderRadius: 20, 
-    padding: 22,
+    padding: 18,
     width: windowWidth * 0.9,
-    height: windowHeight * 0.075,
+    height: windowHeight * 0.08,
+    borderWidth: 1,
   },
   buttonText: {
     color: '#fff', 

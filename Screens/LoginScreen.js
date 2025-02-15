@@ -1,16 +1,26 @@
-import React from "react";
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, Alert } from "react-native";
 import styles from "../stylesheet";
 import { useNavigation, useTheme } from "@react-navigation/native";
-
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 
 
 export default function LoginScreen() {
-
   const navigation = useNavigation();
   const { colors } = useTheme();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginHandler = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+        navigation.navigate("HomeScreen")
+    } catch(error) {
+      Alert.alert("Login error:",error.message)
+    }
+  }
 
   return (
       <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}> 
@@ -21,15 +31,22 @@ export default function LoginScreen() {
             style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
             placeholder="Email"
             placeholderTextColor={ colors.placeholderText }
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <TextInput
             style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
             placeholder="Password"
             placeholderTextColor={ colors.placeholderText }
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.button, {backgroundColor: colors.primary }]}>
+          <TouchableOpacity 
+          style={[styles.button, {backgroundColor: colors.primary }, {borderColor: "#00e4e4"}]}
+          onPress={loginHandler}
+          >
             <Text style={styles.buttonText}>Log in</Text>
           </TouchableOpacity>
         </View>
