@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20, 
-    padding: 17,
+    padding: 22,
     width: windowWidth * 0.9,
-    height: windowHeight * 0.08,
+    height: windowHeight * 0.075,
   },
   buttonText: {
     color: '#fff', 
