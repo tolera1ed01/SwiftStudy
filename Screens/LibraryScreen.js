@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-nat
 import styles from "../stylesheet";
 import { useNavigation, useTheme } from "@react-navigation/native";
 
-export default function HomeScreen() {
+export default function LibraryScreen() {
   const { colors } = useTheme();
 
 

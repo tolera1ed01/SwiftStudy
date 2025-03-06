@@ -10,9 +10,9 @@ const SwiftstudyTheme = {
   DarkTheme: true,
   colors: {
     ...DefaultTheme.colors,
-    background: "#00001C",
+    background: "#1b1c1d",
     primary: "#00c3e6",
-    card: "#000022",
+    card: "#18191a",
     text: "#F6F8FF",
     placeholderText: "#404040",
   }
@@ -26,6 +26,7 @@ export { SwiftstudyTheme };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
@@ -81,9 +82,9 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20, 
-    padding: 18,
+    padding: windowHeight * 0.015,
     width: windowWidth * 0.9,
-    height: windowHeight * 0.08,
+    height: windowHeight * 0.065,
     borderWidth: 1,
   },
   buttonText: {
@@ -121,6 +122,10 @@ const styles = StyleSheet.create({
     zIndex: 1,
     right: windowWidth * 0.1,
     bottom: "6%",
+  },
+  navbar : {
+    height: "100%",
+    width: "100%",
   },
 });
 
