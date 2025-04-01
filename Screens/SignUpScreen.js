@@ -55,7 +55,7 @@ export default function SignUpScreen() {
   };
 
     const navigation = useNavigation();
-    const { colors } = useTheme();
+    const { colors }  = useTheme();
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>

@@ -4,6 +4,7 @@ import styles from "../stylesheet";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 
 
@@ -12,6 +13,7 @@ export default function LoginScreen() {
   const { colors } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const loginHandler = async () => {
     try {
@@ -34,12 +36,23 @@ export default function LoginScreen() {
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
+        <TouchableOpacity 
+        style={[styles.eyeIcon, { bottom: "8.75%" } ]}
+        onPress={() => setIsPasswordVisible(!isPasswordVisible)} 
+      >
+        <AntDesign
+          name={isPasswordVisible ? "eye" : "eyeo"} 
+          size={24} 
+          color={isPasswordVisible ? colors.primary : colors.placeholderText} 
+        />
+      </TouchableOpacity>
           <TextInput
             style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
             placeholder="Password"
             placeholderTextColor={ colors.placeholderText }
             value={password}
             onChangeText={(text) => setPassword(text)}
+            secureTextEntry={!isPasswordVisible}
           />
         </View>
         <View style={styles.buttonContainer}>
