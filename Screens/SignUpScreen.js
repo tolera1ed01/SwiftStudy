@@ -10,14 +10,16 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function SignUpScreen() {
   
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("")   //Defining imporant variables/functions that will be used in the signup screen
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const navigation = useNavigation();
+  const { colors }  = useTheme();
 
   const signUpHandler = async () => {
-    const usernameReqs = /^[a-zA-Z0-9_]{4,12}$/; 
-    if (!usernameReqs.test(username)) {
+    const usernameReqs = /^[a-zA-Z0-9_]{4,12}$/; //Makes the username requirements: Can only be between 4 and 12 characters, and can only have letters and numbers.
+    if (!usernameReqs.test(username)) { //Checks that username requirements are met
       Alert.alert(
         "Invalid Username",
         "Username must be between 4 and 12 characters and contain only letters and numbers."
@@ -26,22 +28,22 @@ export default function SignUpScreen() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password) //Creates a user of the app with firebase using the person's selected email and password
         Alert.alert("Signup Successful!", "Account created successfully.");
       await updateProfile(auth.currentUser, {
-        displayName: username,
+        displayName: username, //Updates their firebase display name to their username to be stored in the firestore database
       });
-      await sendEmailVerification(auth.currentUser)
+      await sendEmailVerification(auth.currentUser) //Sends a verification email the user must do to be able to use their new account
       await setDoc(doc(db, "users", auth.currentUser.uid), {
         username: auth.currentUser.displayName || "",
-        email: auth.currentUser.email || "",
+        email: auth.currentUser.email || "",     //Adds the user to the firestore database and adds them to the "users" records
       });
-      navigation.navigate("LoginScreen");
+      navigation.navigate("LoginScreen"); //Then takes them to the login screen
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         Alert.alert(
           "Invalid Email",
-          "Please enter a valid email address."
+          "Please enter a valid email address."    //Error codes for the signup process
         );
       } else if (error.code === "auth/invalid-password") {
         Alert.alert(
@@ -53,9 +55,6 @@ export default function SignUpScreen() {
       }
     }
   };
-
-    const navigation = useNavigation();
-    const { colors }  = useTheme();
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -69,14 +68,14 @@ export default function SignUpScreen() {
       style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
       placeholder="Username"
       placeholderTextColor={ colors.placeholderText }
-      onChangeText={(text) => setUsername(text)}
+      onChangeText={(text) => setUsername(text)}      //Sets the text the user entered as the username in the usestate
       value={username}
       />
       <TextInput 
       style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
       placeholder="Email"
       placeholderTextColor={ colors.placeholderText }
-      onChangeText={(text) => setEmail(text)}
+      onChangeText={(text) => setEmail(text)}     //Sets the text the user entered as the email in the usestate
       value={email}
       />
     <TouchableOpacity 
@@ -93,15 +92,16 @@ export default function SignUpScreen() {
       style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
       placeholder="Password"
       placeholderTextColor={ colors.placeholderText }
-      onChangeText={(text) => setPassword(text)}
+      onChangeText={(text) => setPassword(text)}  //Sets the text the user entered as the password in the usestate
       value={password}
       secureTextEntry={!isPasswordVisible}
       />
 
-    </View>
+    </View> 
       <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.button, {backgroundColor: colors.primary }, {borderColor: "#00e4e4" }]} onPress={signUpHandler}>
-            <Text style={styles.buttonText}>Sign Up</Text>
+          <TouchableOpacity style={[styles.button, {backgroundColor: colors.primary }, {borderColor: "#00e4e4" }]} onPress={signUpHandler} //The button which triggers the signUpHandler function when it is pressed
+          > 
+            <Text style={styles.buttonText}>Sign Up</Text> 
           </TouchableOpacity>
       </View>
     </SafeAreaView>
