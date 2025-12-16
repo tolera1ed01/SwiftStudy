@@ -33,9 +33,9 @@ function DeckTemplate() {
         flashcardIds: [],
         createdAt: serverTimestamp(),
       });
-      Alert.alert('Deck created with id:', doc.id);
+      Alert.alert("Deck created with id:", doc.id);
     } catch (error) {
-      Alert.alert('Error adding deck:', error);
+      Alert.alert("Error adding deck:", error);
     }
   }
 
