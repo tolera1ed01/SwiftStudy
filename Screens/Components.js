@@ -1,17 +1,74 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import styles from '../stylesheet';
-import { View } from 'react-native';
+import { Button, Touchable, TouchableOpacity, View, Text } from 'react-native';
 import LibraryScreen from "./LibraryScreen";
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useTheme } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
+import { TextInput } from 'react-native-gesture-handler';
+import { useState } from 'react';
+import { collection, doc, addDoc, serverTimestamp } from "firebase/firestore";
+import { db, auth } from '../firebaseConfig';
 
 const Tab = createBottomTabNavigator();
 
 
 
+function DeckTemplate() {
+
+  const { colors } = useTheme();
+  const [deckTitle, setDeckTitle] = useState("");
+  const [deckDescription, setDeckDescription] = useState("");
+  
+
+  async function AddEmptyDeckToDatabase() {
+    const user = auth.currentUser;
+    const uid = user.uid;
+    const decks = collection(doc(collection(db, "users"), uid), "decks");
+
+    try {
+      const doc = await addDoc(decks, {
+        deckTitle,
+        deckDescription,
+        flashcardIds: [],
+        createdAt: serverTimestamp(),
+      });
+      Alert.alert('Deck created with id:', doc.id);
+    } catch (error) {
+      Alert.alert('Error adding deck:', error);
+    }
+  }
+
+  return (
+    <View style={ [ styles.DeckTemplate ] } >
+      <TextInput 
+      style={styles.deckTemplateTitle}
+      placeholder="Deck Title"
+      placeholderTextColor={"white"}
+      value={deckTitle}
+      onChangeText={(text) => setDeckTitle(text)}
+      />
+      <TextInput 
+      style={styles.deckTemplateDescription}
+      placeholder="Deck description..."
+      placeholderTextColor={"white"}
+      value={deckDescription}
+      onChangeText={(text) => setDeckDescription(text)}
+      />
+      <TouchableOpacity style={[styles.createDeckButton, {backgroundColor: colors.primary}]} 
+      onPress={AddEmptyDeckToDatabase}
+      >
+        <Text style={styles.deckButtonText} >Create</Text>
+        </TouchableOpacity>
+    </View>
+  )
+}
+
+
 function Navbar() {
   const { colors } = useTheme();
+  const [isVisible, setIsVisble] = useState(false);
+
   return(
     <View style={ styles.navbar }>
       <Tab.Navigator
@@ -35,13 +92,25 @@ function Navbar() {
       } 
       >
         <Tab.Screen name="Home" component={HomeScreen}/>
-        <Tab.Screen name="Library" component={LibraryScreen}/>
+        <Tab.Screen
+        name="Library"
+        children={() => (
+            <LibraryScreen isVisible={isVisible} />
+        )}
+        options={{
+          headerRight: () => (
+            <TouchableOpacity style={styles.CreateButton} onPress={() => setIsVisble(!isVisible)}  >
+            <AntDesign name="plus" size={30} color={colors.primary} />
+          </TouchableOpacity>
+          )
+        }}
+        />
       </Tab.Navigator>
     </View>
   )
 }
 
-export { Navbar };
+export { Navbar, DeckTemplate };
 
 
 

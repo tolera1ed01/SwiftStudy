@@ -21,10 +21,8 @@ const SwiftstudyTheme = {
 export { SwiftstudyTheme };
 
 
-
-
-
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -123,9 +121,52 @@ const styles = StyleSheet.create({
     right: windowWidth * 0.1,
     bottom: "6%",
   },
-  navbar : {
+  navbar: {
     height: "100%",
     width: "100%",
+  },
+  CreateButton: {
+    position: "relative",
+    paddingRight: windowWidth * 0.05,
+  },
+  DeckTemplate: {
+    position: "relative",
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.3,
+    borderRadius: 20,
+    backgroundColor: "rgba(54, 56, 57, 1)",
+    borderColor: "#00c3e6",
+    borderWidth: 1.25,
+    
+    
+  },
+  deckTemplateTitle: {
+    paddingLeft: 30,
+    paddingTop: 20,
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: "white",
+  },
+  deckTemplateDescription: {
+    paddingLeft: 30,
+    fontSize: 15,
+    color: "white",
+  },
+  createDeckButton: {
+    position: "relative",
+    width: "30%",
+    height: "20%",
+    margin: 10,
+    backgroundColor: "rgba(4, 134, 240, 1)",
+    borderRadius: 30,
+    alignSelf: 'flex-end',
+    top: "25%",
+
+  },
+  deckButtonText: {
+    paddingTop: "12.5%",
+    paddingLeft: "30%",
+
   },
 });
 
