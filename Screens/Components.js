@@ -24,10 +24,10 @@ function DeckTemplate() {
   async function AddEmptyDeckToDatabase() {
     const user = auth.currentUser;
     const uid = user.uid;
-    const decks = collection(doc(collection(db, "users"), uid), "decks");
+    const decksRef = collection(doc(collection(db, "users"), uid), "decks");
 
     try {
-      const doc = await addDoc(decks, {
+      const doc = await addDoc(decksRef, {
         deckTitle,
         deckDescription,
         flashcardIds: [],
@@ -40,7 +40,7 @@ function DeckTemplate() {
   }
 
   return (
-    <View style={ [ styles.DeckTemplate ] } >
+    <View style={ styles.DeckTemplate}  >
       <TextInput 
       style={styles.deckTemplateTitle}
       placeholder="Deck Title"

@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -167,6 +166,34 @@ const styles = StyleSheet.create({
     paddingTop: "12.5%",
     paddingLeft: "30%",
 
+  },
+
+  LibraryContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    maxWidth: windowWidth * 1,
+    maxHeight: windowHeight * 1.04,
+  },
+
+  Deck: {
+    position: "relative",
+    width: windowWidth * 0.8,
+    height: windowHeight * 0.2,
+    borderRadius: 20,
+    backgroundColor: "rgba(54, 56, 57, 1)",
+    borderColor: "#00c3e6",
+    borderWidth: 1.25,
+    margin: 10,
+  },
+  deckTitle: {
+    paddingLeft: 30,
+    paddingTop: 20,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: "white",
   },
 });
 
