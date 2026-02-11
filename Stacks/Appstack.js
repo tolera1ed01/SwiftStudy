@@ -29,7 +29,7 @@ export default function AppStack() {
           options={({ route }) => ({ 
             title: route.params.deckTitle,
             headerRight: () => (
-              <FlashcardsHeaderButton onPress={() => setIsVisble(!isVisible)}/>
+              <FlashcardsHeaderButton onPress={() => setIsVisble(!isVisible)}/> //For button's visibility
             ),
           })}
 />
