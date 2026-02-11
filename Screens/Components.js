@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
+import CreateScreen from "./FlashcardsScreen"
 import styles from '../stylesheet';
 import { Button, Touchable, TouchableOpacity, View, Text } from 'react-native';
 import LibraryScreen from "./LibraryScreen";
@@ -30,7 +31,7 @@ function DeckTemplate() {
       const doc = await addDoc(decksRef, {
         deckTitle,
         deckDescription,
-        flashcardIds: [],
+        flashcards: [],
         createdAt: serverTimestamp(),
       });
       Alert.alert("Deck created with id:", doc.id);
@@ -95,7 +96,7 @@ function Navbar() {
         <Tab.Screen
         name="Library"
         children={() => (
-            <LibraryScreen isVisible={isVisible} />
+          <LibraryScreen isVisible={isVisible} />
         )}
         options={{
           headerRight: () => (

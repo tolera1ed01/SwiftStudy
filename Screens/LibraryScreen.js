@@ -12,6 +12,8 @@ export default function LibraryScreen({isVisible}) {
   const uid = user.uid;
   const [data, setData] = useState([]);
   const { colors } = useTheme();
+  const navigation = useNavigation();
+
 
   useEffect(() => {
 
@@ -29,10 +31,16 @@ export default function LibraryScreen({isVisible}) {
 }, [uid]);
 
 
-  const Deck = ({title}) => (
-    <View style={ styles.Deck } >
-      <Text style={ styles.deckTitle }>{title}</Text>
-    </View>
+  const Deck = ({ deck }) => (
+    <TouchableOpacity style={ styles.Deck }
+      onPress={() => navigation.navigate("FlashcardsScreen", {
+        deckId: deck.id,
+        deckTitle: deck.deckTitle,
+        flashcards: deck.flashcards
+      })}
+    >
+      <Text style={ styles.deckTitle }>{ deck.deckTitle }</Text>
+    </TouchableOpacity>
   );
 
 
@@ -41,7 +49,7 @@ export default function LibraryScreen({isVisible}) {
       {isVisible && <DeckTemplate/>}
       <FlatList
         data={data}
-        renderItem={({ item }) => <Deck title={item.deckTitle} />}
+        renderItem={({ item }) => <Deck deck={item} />}
         keyExtractor={(item) => item.id} 
       >
       </FlatList>
