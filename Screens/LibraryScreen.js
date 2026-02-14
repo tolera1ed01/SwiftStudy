@@ -48,6 +48,7 @@ export default function LibraryScreen({isVisible}) {
     <SafeAreaView style={[styles.LibraryContainer, { backgroundColor: colors.background }]}>
       {isVisible && <DeckTemplate/>}
       <FlatList
+        numColumns={1}
         data={data}
         renderItem={({ item }) => <Deck deck={item} />}
         keyExtractor={(item) => item.id} 
