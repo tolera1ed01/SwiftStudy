@@ -1,12 +1,13 @@
-import { NavigationContainer, TouchableOpacity } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from '../Screens/LoginScreen';
 import SignUpScreen from "../Screens/SignUpScreen";
-import HomeScreen from "../Screens/HomeScreen";
+import { Fragment } from "react/jsx-runtime";
 import { SwiftstudyTheme } from "../stylesheet";
 import { StatusBar } from "react-native";
 import { Navbar } from "../Screens/Components";
 import { FlashcardsHeaderButton, FlashcardsScreen } from "../Screens/FlashcardsScreen";
+import ReviseScreen from "../Screens/ReviseScreen";
 
 
 const Stack = createStackNavigator();
@@ -29,10 +30,10 @@ export default function AppStack() {
           options={({ route }) => ({ 
             title: route.params.deckTitle,
             headerRight: () => (
-              <FlashcardsHeaderButton onPress={() => setIsVisble(!isVisible)}/> //For button's visibility
-            ),
-          })}
-/>
+                <FlashcardsHeaderButton onPress={() => setIsVisble(!isVisible)}/> 
+              ),
+            })}/>
+          <Stack.Screen name="ReviseScreen" component={ReviseScreen} options={ ({ route }) => ({title: route.params.deckTitle })} />
 
         </Stack.Navigator>
       </NavigationContainer>

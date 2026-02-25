@@ -57,6 +57,16 @@ function FlashcardsHeaderButton({ onPress }) {
   );
 }
 
+function ReviseCardsButton({ onPress }) {
+  const { colors } = useTheme();
+
+  return (
+    <TouchableOpacity style={styles.CreateButton} onPress={onPress}>
+      <AntDesign name="playcircleo" size={26} color={colors.primary} />
+    </TouchableOpacity>
+  )
+}
+
 function FlashcardsScreen({ route }) {
   const { deckId, deckTitle, flashcards } = route.params;
   const [isVisible, setIsVisible] = useState(false);
@@ -81,13 +91,14 @@ function FlashcardsScreen({ route }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <FlashcardsHeaderButton
-          onPress={() => setIsVisible(prev => !prev)}    
-        />
+        <>
+          <FlashcardsHeaderButton onPress={() => setIsVisible(!isVisible)}/>
+          <ReviseCardsButton onPress={() => navigation.navigate("ReviseScreen", { deckId, deckTitle, flashcards })}/>
+        </>
       ),
       title: deckTitle,
     });
-  }, [navigation, deckTitle]);
+  }, [navigation, deckId, deckTitle, flashcards]);
 
   useEffect(() => {
     const unsub = onSnapshot(deckRef, (snap) => {

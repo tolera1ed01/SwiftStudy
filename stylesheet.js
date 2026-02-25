@@ -195,6 +195,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: "white",
   },
+  ReviseButton: {
+    position: "relative",
+    paddingRight: windowWidth * 0.05,
+    backgroundColor: "#00c3e6",
+    width: "100%",
+    height: "100%"
+  },
 });
 
 export default styles;
