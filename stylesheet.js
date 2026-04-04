@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native';
-import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer, DefaultTheme, useNavigation, DarkTheme, } from '@react-navigation/native';
+import { StyleSheet } from "react-native";
+import { DefaultTheme } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -14,7 +14,7 @@ const SwiftstudyTheme = {
     primary: "#00c3e6",
     card: "#18191a",
     text: "#F6F8FF",
-    placeholderText: "#404040",
+    placeholderText: "#6a6a6a",
   }
 };
 
@@ -202,6 +202,59 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%"
   },
+  noCardsText: {
+    color: "white",
+  },
+  reviseScreenContainer: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+  reviseRow: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 16,
+  },
+  reviseArrowButton: {
+    padding: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 30,
+  },
+  reviseCard: {
+    position: "relative",
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.3,
+    borderRadius: 20,
+    backgroundColor: "rgba(54, 56, 57, 1)",
+    borderColor: "#00c3e6",
+    borderWidth: 1.25,
+    margin: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+},
+  reviseCardText: {
+    fontSize: 24,
+    textAlign: "center",
+    color: "white",
+  },
+  reviseCounterText: {
+    textAlign: "center",
+    fontSize: 16,
+    marginBottom: 20,
+    color: "white",
+    opacity: 0.7,
+  },
+  reviseArrowsRow: {
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+},
+
 });
 
 export default styles;

@@ -8,37 +8,64 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useState } from 'react';
-import { collection, doc, addDoc, serverTimestamp } from "firebase/firestore";
-import { db, auth } from '../firebaseConfig';
 
 const Tab = createBottomTabNavigator();
 
+function FlashcardTemplate({ onCreate }) {
+  const { colors } = useTheme();
+  const [Front, setFront] = useState("");
+  const [Back, setBack] = useState("");
+
+   const handleCreate = () => {
+    if (!Front.trim() || !Back.trim()) return;
+    onCreate(Front, Back);  
+    setFront(""); 
+    setBack("");
+  };
 
 
-function DeckTemplate() {
+  return (
+    <View style={ styles.DeckTemplate}  >
+      <TextInput 
+      style={styles.deckTemplateTitle}
+      placeholder="Flashcard Front"
+      placeholderTextColor={"white"}
+      value={Front}
+      onChangeText={(text) => setFront(text)}
+      />
+      <TextInput 
+      style={styles.deckTemplateDescription}
+      placeholder="Flashcard Back"
+      placeholderTextColor={"white"}
+      value={Back}
+      onChangeText={(text) => setBack(text)}
+      />
+      <TouchableOpacity style={[styles.createDeckButton, {backgroundColor: colors.primary}]} 
+      activeOpacity={0.8}
+      onPress={handleCreate}
+      >
+        <Text style={styles.deckButtonText}>Create</Text>
+        </TouchableOpacity>
+    </View>
+  )
+
+}
+
+
+function DeckTemplate( { onCreate } ) {
 
   const { colors } = useTheme();
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
   
-
-  async function AddEmptyDeckToDatabase() {
-    const user = auth.currentUser;
-    const uid = user.uid;
-    const decksRef = collection(doc(collection(db, "users"), uid), "decks");
-
-    try {
-      const doc = await addDoc(decksRef, {
-        deckTitle,
-        deckDescription,
-        flashcards: [],
-        createdAt: serverTimestamp(),
-      });
-      Alert.alert("Deck created with id:", doc.id);
-    } catch (error) {
-      Alert.alert("Error adding deck:", error);
-    }
-  }
+  const handleCreate = () => {
+    if (!deckTitle.trim() || !deckDescription.trim()) return;
+    onCreate(deckTitle, deckDescription); 
+    setDeckTitle(""); 
+    setDeckDescription("");
+  };
+  
+  
 
   return (
     <View style={ styles.DeckTemplate}  >
@@ -57,7 +84,8 @@ function DeckTemplate() {
       onChangeText={(text) => setDeckDescription(text)}
       />
       <TouchableOpacity style={[styles.createDeckButton, {backgroundColor: colors.primary}]} 
-      onPress={AddEmptyDeckToDatabase}
+      activeOpacity={0.8}
+      onPress={handleCreate}
       >
         <Text style={styles.deckButtonText} >Create</Text>
         </TouchableOpacity>
@@ -68,7 +96,7 @@ function DeckTemplate() {
 
 function Navbar() {
   const { colors } = useTheme();
-  const [isVisible, setIsVisble] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   return(
     <View style={ styles.navbar }>
@@ -100,7 +128,10 @@ function Navbar() {
         )}
         options={{
           headerRight: () => (
-            <TouchableOpacity style={styles.CreateButton} onPress={() => setIsVisble(!isVisible)}  >
+            <TouchableOpacity style={styles.CreateButton} 
+            onPress={() => setIsVisible(!isVisible)}  
+            activeOpacity={0.8}
+            >
             <AntDesign name="plus" size={30} color={colors.primary} />
           </TouchableOpacity>
           )
@@ -111,7 +142,7 @@ function Navbar() {
   )
 }
 
-export { Navbar, DeckTemplate };
+export { Navbar, DeckTemplate, FlashcardTemplate };
 
 
 

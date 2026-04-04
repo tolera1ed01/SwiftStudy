@@ -14,6 +14,22 @@ export default function LibraryScreen({isVisible}) {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
+  async function AddEmptyDeckToDatabase() {
+    const decksRef = collection(doc(collection(db, "users"), uid), "decks");
+
+    try {
+      const doc = await addDoc(decksRef, {
+        deckTitle,
+        deckDescription,
+        flashcards: [],
+        createdAt: serverTimestamp(),
+      });
+      Alert.alert("Deck created with id:", doc.id);
+    } catch (error) {
+      Alert.alert("Error adding deck:", error);
+    }
+  }
+
 
   useEffect(() => {
 
@@ -31,12 +47,13 @@ export default function LibraryScreen({isVisible}) {
 }, [uid]);
 
 
+
   const Deck = ({ deck }) => (
     <TouchableOpacity style={ styles.Deck }
+    activeOpacity={0.8}
       onPress={() => navigation.navigate("FlashcardsScreen", {
         deckId: deck.id,
         deckTitle: deck.deckTitle,
-        flashcards: deck.flashcards
       })}
     >
       <Text style={ styles.deckTitle }>{ deck.deckTitle }</Text>
@@ -46,7 +63,7 @@ export default function LibraryScreen({isVisible}) {
 
   return (
     <SafeAreaView style={[styles.LibraryContainer, { backgroundColor: colors.background }]}>
-      {isVisible && <DeckTemplate/>}
+      {isVisible && <DeckTemplate onCreate={AddEmptyDeckToDatabase} />}
       <FlatList
         numColumns={1}
         data={data}

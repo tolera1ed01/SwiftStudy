@@ -6,52 +6,13 @@ import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { FlatList } from "react-native-gesture-handler";
-
-
-function FlashcardTemplate({ onCreate }) {
-  const { colors } = useTheme();
-  const [Front, setFront] = useState("");
-  const [Back, setBack] = useState("");
-
-   const handleCreate = () => {
-    if (!Front.trim() || !Back.trim()) return;
-    onCreate(Front, Back);  
-    setFront(""); 
-    setBack("");
-  };
-
-
-  return (
-    <View style={ styles.DeckTemplate}  >
-      <TextInput 
-      style={styles.deckTemplateTitle}
-      placeholder="Flashcard Front"
-      placeholderTextColor={"white"}
-      value={Front}
-      onChangeText={(text) => setFront(text)}
-      />
-      <TextInput 
-      style={styles.deckTemplateDescription}
-      placeholder="Flashcard Back"
-      placeholderTextColor={"white"}
-      value={Back}
-      onChangeText={(text) => setBack(text)}
-      />
-      <TouchableOpacity style={[styles.createDeckButton, {backgroundColor: colors.primary}]} 
-      onPress={handleCreate}
-      >
-        <Text style={styles.deckButtonText}>Create</Text>
-        </TouchableOpacity>
-    </View>
-  )
-
-}
+import { FlashcardTemplate } from "./Components";
 
 function FlashcardsHeaderButton({ onPress }) {
   const { colors } = useTheme();
 
   return (
-    <TouchableOpacity style={styles.CreateButton} onPress={onPress}>
+    <TouchableOpacity style={styles.CreateButton} onPress={onPress} activeOpacity={0.8} >
       <AntDesign name="plus" size={30} color={colors.primary} />
     </TouchableOpacity>
   );
@@ -61,18 +22,18 @@ function ReviseCardsButton({ onPress }) {
   const { colors } = useTheme();
 
   return (
-    <TouchableOpacity style={styles.CreateButton} onPress={onPress}>
+    <TouchableOpacity style={styles.CreateButton} onPress={onPress} activeOpacity={0.8} >
       <AntDesign name="playcircleo" size={26} color={colors.primary} />
     </TouchableOpacity>
   )
 }
 
 function FlashcardsScreen({ route }) {
-  const { deckId, deckTitle, flashcards } = route.params;
+  const { deckId, deckTitle } = route.params;
   const [isVisible, setIsVisible] = useState(false);
   const user = auth.currentUser;
   const uid = user.uid;
-  const [data, setData] = useState(flashcards);
+  const [data, setData] = useState([]);
   const { colors } = useTheme();
   const navigation = useNavigation();
 
@@ -82,35 +43,35 @@ function FlashcardsScreen({ route }) {
   );
 
   const addFlashcard = async (front, back) => {
-  const newCard = { front, back };
-  const updated = [...data, newCard];
-  setData(updated);
-  await updateDoc(deckRef, { flashcards: updated });
+    const newCard = { front, back };
+    const updated = [...data, newCard];
+    setData(updated);
+    await updateDoc(deckRef, { flashcards: updated });
   };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <>
-          <FlashcardsHeaderButton onPress={() => setIsVisible(!isVisible)}/>
-          <ReviseCardsButton onPress={() => navigation.navigate("ReviseScreen", { deckId, deckTitle, flashcards })}/>
+          <FlashcardsHeaderButton onPress={() => setIsVisible(isVisible => !isVisible)}/>
+          <ReviseCardsButton onPress={() => navigation.navigate("ReviseScreen", { deckId, deckTitle, flashcards: data })}/>
         </>
       ),
       title: deckTitle,
     });
-  }, [navigation, deckId, deckTitle, flashcards]);
+  }, [navigation, deckId, deckTitle, data]);
 
   useEffect(() => {
     const unsub = onSnapshot(deckRef, (snap) => {
       const deck = snap.data();
-      setData(deck?.flashcards || []);                  
+      setData(deck?.flashcards || []);
     });
     return () => unsub();
   }, [uid, deckId]);
 
 
   const Flashcard = ({ flashcard }) => (
-    <TouchableOpacity style={styles.Deck}>
+    <TouchableOpacity style={styles.Deck} activeOpacity={0.8} >
       <Text style={styles.deckTitle}>{flashcard.front}</Text>
     </TouchableOpacity>
   );
