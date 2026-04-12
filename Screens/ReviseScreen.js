@@ -35,7 +35,7 @@ export default function ReviseScreen( {route} ) {
   if (!flashcards || flashcards.length === 0) {
     return (
       <SafeAreaView style={[styles.reviseScreenContainer, { backgroundColor: colors.background }]}>
-        <Text style={styles.noCardsText} >No flashcards in this deck</Text>
+        <Text style={[styles.noCardsText, {color: colors.text}]} >No flashcards in this deck</Text>
       </SafeAreaView>
     );
   }
@@ -45,9 +45,9 @@ export default function ReviseScreen( {route} ) {
       <View style={styles.reviseRow}>
         <TouchableOpacity 
         activeOpacity={0.8} 
-        style={styles.reviseCard} 
+        style={[styles.reviseCard, { backgroundColor: colors.card }]} 
         onPress={() => setShowFront((prevShowFront) => !prevShowFront)}>
-          <Text style={styles.reviseCardText}>
+          <Text style={[styles.reviseCardText, { color: colors.text }]}>
             {showFront ? card.front : card.back}
           </Text>
         </TouchableOpacity>
@@ -63,7 +63,7 @@ export default function ReviseScreen( {route} ) {
       </TouchableOpacity>
     </View>
 
-      <Text style={styles.reviseCounterText}>
+      <Text style={[styles.reviseCounterText, {color: colors.text}]}>
         {index + 1} / {flashcards.length}
       </Text>
     </SafeAreaView>

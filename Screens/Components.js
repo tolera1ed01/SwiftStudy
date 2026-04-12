@@ -8,6 +8,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useState } from 'react';
+import SettingsScreen from './SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -68,18 +69,18 @@ function DeckTemplate( { onCreate } ) {
   
 
   return (
-    <View style={ styles.DeckTemplate}  >
+    <View style={ [styles.DeckTemplate, {backgroundColor: colors.card}]} >
       <TextInput 
       style={styles.deckTemplateTitle}
       placeholder="Deck Title"
-      placeholderTextColor={"white"}
+      placeholderTextColor={colors.text}
       value={deckTitle}
       onChangeText={(text) => setDeckTitle(text)}
       />
       <TextInput 
       style={styles.deckTemplateDescription}
       placeholder="Deck description..."
-      placeholderTextColor={"white"}
+      placeholderTextColor={colors.text}
       value={deckDescription}
       onChangeText={(text) => setDeckDescription(text)}
       />
@@ -94,7 +95,7 @@ function DeckTemplate( { onCreate } ) {
 }
 
 
-function Navbar() {
+function Navbar({ isDark, toggleTheme}) {
   const { colors } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -105,9 +106,11 @@ function Navbar() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name == "Home") {
-            iconName = focused ? "home" : "home";
+            iconName = "home";
           } else if (route.name == "Library") {
             iconName = focused ? "folderopen" : "folder1";
+          } else if (route.name == "Settings") {
+            iconName = "setting";
           }
           return <AntDesign name={iconName} size={size} color={color} />;
         },
@@ -116,11 +119,12 @@ function Navbar() {
           height: "70",
           borderTopWidth: 0,
           paddingTop: 5,
+          backgroundColor: isDark ? "#18191a" : "#f3f6ff",
         }
       })
       } 
       >
-        <Tab.Screen name="Home" component={HomeScreen}/>
+        <Tab.Screen name="Home" component={HomeScreen} options={{headerStyle: {backgroundColor: isDark ? "#18191a" : colors.card}}}/>
         <Tab.Screen
         name="Library"
         children={() => (
@@ -134,9 +138,13 @@ function Navbar() {
             >
             <AntDesign name="plus" size={30} color={colors.primary} />
           </TouchableOpacity>
-          )
+          ),
+          headerStyle: {backgroundColor: isDark ? "#18191a" : colors.card}
         }}
         />
+        <Tab.Screen name="Settings" options={{headerStyle: {backgroundColor: isDark ? "#18191a" : colors.card}}} children={() => (
+          <SettingsScreen isDark={isDark} toggleTheme={toggleTheme}/> 
+        )}/>
       </Tab.Navigator>
     </View>
   )

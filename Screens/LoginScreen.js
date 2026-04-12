@@ -10,7 +10,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function LoginScreen() {
   const navigation = useNavigation();      //defining important variables/functions to be used in the login screen
-  const { colors } = useTheme();
+  const { colors, dark } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -30,7 +30,7 @@ export default function LoginScreen() {
         <Text style={[styles.loginTitle, { color: colors.text }]}>Login</Text>
         <View style={styles.inputContainer}>
           <TextInput
-            style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
+            style={[styles.inputBox, {backgroundColor: dark ? "#18191a" : colors.card, color: colors.text}]}
             placeholder="Email"
             placeholderTextColor={ colors.placeholderText }
             value={email}
@@ -47,7 +47,7 @@ export default function LoginScreen() {
         />
       </TouchableOpacity>
           <TextInput
-            style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
+            style={[styles.inputBox, {backgroundColor: dark ? "#18191a" : colors.card, color: colors.text}]}
             placeholder="Password"
             placeholderTextColor={ colors.placeholderText }
             value={password}

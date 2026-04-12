@@ -37,8 +37,7 @@ function OptionsButton({ onRename, onDelete }) {
             onPress={() => {
               setOpen(false);
               onRename();
-            }}
-          >
+            }}>
             <Text style={styles.optionsMenuText}>Rename deck</Text>
           </TouchableOpacity>
 
@@ -47,8 +46,7 @@ function OptionsButton({ onRename, onDelete }) {
             onPress={() => {
               setOpen(false);
               onDelete && onDelete();
-            }}
-          >
+            }}>
             <Text style={styles.optionsMenuText}>Delete deck</Text>
           </TouchableOpacity>
         </View>
@@ -132,8 +130,8 @@ function FlashcardsScreen({ route }) {
 
 
   const Flashcard = ({ flashcard }) => (
-    <TouchableOpacity style={styles.Deck} activeOpacity={0.8} >
-      <Text style={styles.deckTitle}>{flashcard.front}</Text>
+    <TouchableOpacity style={[styles.Deck, { backgroundColor: colors.card }]} activeOpacity={0.8} >
+      <Text style={[styles.deckTitle, {color: colors.text}]}>{flashcard.front}</Text>
     </TouchableOpacity>
   );
 
@@ -157,26 +155,22 @@ function FlashcardsScreen({ route }) {
               value={newTitle}
               onChangeText={setNewTitle}
               placeholder="New deck name"
-              placeholderTextColor="#888"
-            />
+              placeholderTextColor="#888"/>
             <View style={styles.renameButtonsRow}>
               <TouchableOpacity
                 style={styles.renameButtonCancel}
-                onPress={() => setRenameVisible(false)}
-              >
+                onPress={() => setRenameVisible(false)}>
                 <Text style={styles.renameButtonText}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.renameButtonSave}
-                onPress={handleRenameDeck}
-              >
+                onPress={handleRenameDeck}>
                 <Text style={styles.renameButtonText}>Save</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       )}
-
     </SafeAreaView>
   );
 }

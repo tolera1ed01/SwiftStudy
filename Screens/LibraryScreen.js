@@ -49,14 +49,13 @@ export default function LibraryScreen({isVisible}) {
 
 
   const Deck = ({ deck }) => (
-    <TouchableOpacity style={ styles.Deck }
+    <TouchableOpacity style={[styles.Deck, { backgroundColor: colors.card}]}
     activeOpacity={0.8}
       onPress={() => navigation.navigate("FlashcardsScreen", {
         deckId: deck.id,
         deckTitle: deck.deckTitle,
-      })}
-    >
-      <Text style={ styles.deckTitle }>{ deck.deckTitle }</Text>
+      })}>
+      <Text style={ [styles.deckTitle, {color: colors.text}] }>{ deck.deckTitle }</Text>
     </TouchableOpacity>
   );
 

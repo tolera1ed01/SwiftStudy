@@ -7,18 +7,31 @@ const windowHeight = Dimensions.get('window').height;
 
 const SwiftstudyTheme = {
   ...DefaultTheme,
-  DarkTheme: true,
+  dark: true,
   colors: {
     ...DefaultTheme.colors,
     background: "#1b1c1d",
     primary: "#00c3e6",
-    card: "#18191a",
+    card: "rgba(54, 56, 57, 1)",
     text: "#F6F8FF",
     placeholderText: "#6a6a6a",
   }
 };
 
-export { SwiftstudyTheme };
+const SwiftstudyLightTheme = {
+  ...DefaultTheme,
+  dark: false,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#F6F8FF",
+    primary: "#00c3e6",
+    card: "#f3f6ff", 
+    text: "#111111",
+    placeholderText: "#6a6a6a",
+  },
+};
+
+export { SwiftstudyTheme, SwiftstudyLightTheme };
 
 
 const styles = StyleSheet.create({
@@ -193,7 +206,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     fontSize: 24,
     fontWeight: 'bold',
-    color: "white",
   },
   ReviseButton: {
     position: "relative",
@@ -327,6 +339,42 @@ renameButtonSave: {
 renameButtonText: {
   color: "white",
   fontSize: 14,
+},
+
+settingsContainer: {
+  flex: 1,
+  paddingHorizontal: 16,
+  paddingTop: 24,
+},
+settingsHeaderText: {
+  fontSize: 24,
+  fontWeight: "700",
+  marginBottom: 24,
+},
+settingsSection: {
+  marginBottom: 32,
+},
+settingsSectionTitle: {
+  fontSize: 16,
+  fontWeight: "600",
+  marginBottom: 12,
+},
+settingsRow: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  paddingHorizontal: 16,
+  paddingVertical: 12,
+  borderRadius: 12,
+},
+settingsRowTitle: {
+  fontSize: 16,
+  fontWeight: "500",
+  marginBottom: 4,
+},
+settingsRowSubtitle: {
+  fontSize: 13,
+  color: "#6a6a6a",
 },
 
 });

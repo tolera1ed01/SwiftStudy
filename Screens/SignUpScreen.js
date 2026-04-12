@@ -15,7 +15,7 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState("")
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigation = useNavigation();
-  const { colors }  = useTheme();
+  const { colors, dark }  = useTheme();
 
   const signUpHandler = async () => {
     const usernameReqs = /^[a-zA-Z0-9_]{4,12}$/; //Makes the username requirements: Can only be between 4 and 12 characters, and can only have letters and numbers.
@@ -65,14 +65,14 @@ export default function SignUpScreen() {
     <Text style={[styles.createAccountTitle, {color: colors.text}]}>Create Account</Text>
     <View style={styles.inputContainer}>
       <TextInput 
-      style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
+      style={[styles.inputBox, {backgroundColor: dark ? "#18191a" : colors.card, color: colors.text}]}
       placeholder="Username"
       placeholderTextColor={ colors.placeholderText }
       onChangeText={(text) => setUsername(text)}      //Sets the text the user entered as the username in the usestate
       value={username}
       />
       <TextInput 
-      style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
+      style={[styles.inputBox, {backgroundColor: dark ? "#18191a" : colors.card, color: colors.text}]}
       placeholder="Email"
       placeholderTextColor={ colors.placeholderText }
       onChangeText={(text) => setEmail(text)}     //Sets the text the user entered as the email in the usestate
@@ -89,7 +89,7 @@ export default function SignUpScreen() {
         />
       </TouchableOpacity>
       <TextInput 
-      style={[styles.inputBox, {backgroundColor: colors.card, color: colors.text}]}
+      style={[styles.inputBox, {backgroundColor: dark ? "#18191a" : colors.card, color: colors.text}]}
       placeholder="Password"
       placeholderTextColor={ colors.placeholderText }
       onChangeText={(text) => setPassword(text)}  //Sets the text the user entered as the password in the usestate
