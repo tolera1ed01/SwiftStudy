@@ -366,6 +366,7 @@ settingsRow: {
   paddingHorizontal: 16,
   paddingVertical: 12,
   borderRadius: 12,
+  marginBottom: 10,
 },
 settingsRowTitle: {
   fontSize: 16,
@@ -375,6 +376,43 @@ settingsRowTitle: {
 settingsRowSubtitle: {
   fontSize: 13,
   color: "#6a6a6a",
+},
+deleteButton: {
+  paddingHorizontal: 14,
+  paddingVertical: 8,
+  borderRadius: 999,
+  borderWidth: 1,
+  borderColor: "#ff4d4f",
+  backgroundColor: "transparent",
+  alignSelf: "center",
+},
+deleteButtonText: {
+  color: "#ff4d4f",
+  fontWeight: "600",
+  fontSize: 14,
+},
+changeEmailInput: {
+  marginTop: 8,
+  paddingHorizontal: 12,
+  paddingVertical: 8,
+  borderRadius: 8,
+  borderWidth: 1,
+  borderColor: "rgba(255,255,255,0.1)",
+  fontSize: 14,
+},
+
+changeEmailButton: {
+  alignSelf: "center",
+  paddingHorizontal: 14,
+  paddingVertical: 8,
+  borderRadius: 999,
+  backgroundColor: "#00c3e6",
+},
+
+changeEmailButtonText: {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: 14,
 },
 
 });

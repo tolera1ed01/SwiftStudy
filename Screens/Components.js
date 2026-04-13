@@ -9,6 +9,7 @@ import { useNavigation, useTheme } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import SettingsScreen from './SettingsScreen';
+import { auth } from '../firebaseConfig';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +22,7 @@ function FlashcardTemplate({ onCreate }) {
     if (!Front.trim() || !Back.trim()) return;
     onCreate(Front, Back);  
     setFront(""); 
-    setBack("");
+    setBack("")
   };
 
 
@@ -98,6 +99,8 @@ function DeckTemplate( { onCreate } ) {
 function Navbar({ isDark, toggleTheme}) {
   const { colors } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
+  const user = auth.currentUser;
+  const username = user.displayName;
 
   return(
     <View style={ styles.navbar }>
@@ -120,11 +123,12 @@ function Navbar({ isDark, toggleTheme}) {
           borderTopWidth: 0,
           paddingTop: 5,
           backgroundColor: isDark ? "#18191a" : "#f3f6ff",
-        }
+        },
+        tabBarHideOnKeyboard: true,
       })
       } 
       >
-        <Tab.Screen name="Home" component={HomeScreen} options={{headerStyle: {backgroundColor: isDark ? "#18191a" : colors.card}}}/>
+        <Tab.Screen name="Home" component={HomeScreen} options={{headerStyle: {backgroundColor: isDark ? "#18191a" : colors.card}, headerRight: () => (<Text style={{marginRight: 12, color: colors.text, fontWeight: "600"}} >{username}</Text>)}}/>
         <Tab.Screen
         name="Library"
         children={() => (
