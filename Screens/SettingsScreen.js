@@ -30,7 +30,7 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
     try {
       await updateProfile(user, {displayName: newUsername})
       Alert.alert(
-        "Username updated to: ", newUsername
+        "Username updated to: ", user.displayName
       );
     } catch (error) {
       Alert.alert("Error: ", error.message);
