@@ -1,9 +1,10 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import styles from "../stylesheet";
-
+import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { db, auth } from "../firebaseConfig";
 
 
 export default function ReviseScreen( {route} ) {
@@ -14,6 +15,12 @@ export default function ReviseScreen( {route} ) {
 
   const [index, setIndex] = useState(0);
   const [showFront, setShowFront] = useState(true);
+
+  useEffect( () => {
+    const uid = auth.currentUser.uid;
+    const deckRef = doc(db, "users", uid, "decks", deckId);
+    updateDoc(deckRef, { lastRevised: serverTimestamp()})
+  })
   
   useLayoutEffect( () => {
     navigation.setOptions({

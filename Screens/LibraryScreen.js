@@ -4,7 +4,7 @@ import styles from "../stylesheet";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
 import { DeckTemplate } from "./Components";
-import { collection, doc, query, onSnapshot } from "firebase/firestore";
+import { collection, doc, query, onSnapshot, addDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth } from '../firebaseConfig';
 
 export default function LibraryScreen({isVisible}) {
@@ -14,15 +14,16 @@ export default function LibraryScreen({isVisible}) {
   const { colors } = useTheme();
   const navigation = useNavigation();
 
-  async function AddEmptyDeckToDatabase() {
+  async function AddEmptyDeckToDatabase(deckTitle, deckDescription) {
     const decksRef = collection(doc(collection(db, "users"), uid), "decks");
 
     try {
-      const doc = await addDoc(decksRef, {
+      const docRef = await addDoc(decksRef, {
         deckTitle,
         deckDescription,
         flashcards: [],
         createdAt: serverTimestamp(),
+        lastRevised: null,
       });
       Alert.alert("Deck created with id:", doc.id);
     } catch (error) {
@@ -41,10 +42,9 @@ export default function LibraryScreen({isVisible}) {
       querySnapshot.forEach((snap) => {
       list.push({ id: snap.id, ...snap.data() }); //useEffect is for getting decks and adding them to the list
     });
-    setData(list);
-  });
-  return () => unsub();
-}, [uid]);
+    setData(list);});
+    return () => unsub();
+  }, [uid]);
 
 
 

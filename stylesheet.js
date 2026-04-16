@@ -415,6 +415,41 @@ changeEmailButtonText: {
   fontSize: 14,
 },
 
+homeContainer: {
+  flex: 1,                                                                                                           
+  width: "100%",
+  paddingTop: 24,                                                                                                    
+},              
+recentlyRevisedTitle: {
+  fontSize: 20,
+  fontWeight: "700",
+  paddingHorizontal: 20,
+  marginBottom: 12,
+},                                                                                                                   
+recentDecksList: {
+  paddingHorizontal: 20,                                                                                             
+  gap: 12,      
+},
+recentDeckCard: {
+  width: 140,
+  height: 100,
+  borderRadius: 16,
+  borderColor: "#00c3e6",                                                                                            
+  borderWidth: 1.25,
+  padding: 12,                                                                                                       
+  justifyContent: "center",
+},
+recentDeckTitle: {
+  fontSize: 15,
+  fontWeight: "600",
+},                                                                                                                   
+recentDeckEmpty: {
+  fontSize: 14,                                                                                                      
+  opacity: 0.5, 
+  paddingTop: 8,
+},
+
+
 });
 
 export default styles;
