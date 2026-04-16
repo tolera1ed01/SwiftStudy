@@ -25,7 +25,7 @@ export default function LibraryScreen({isVisible}) {
         createdAt: serverTimestamp(),
         lastRevised: null,
       });
-      Alert.alert("Deck created with id:", doc.id);
+      Alert.alert("Deck created with id:", docRef.id);
     } catch (error) {
       Alert.alert("Error adding deck:", error);
     }
