@@ -448,6 +448,31 @@ recentDeckEmpty: {
   opacity: 0.5, 
   paddingTop: 8,
 },
+searchBarContainer: {
+  paddingHorizontal: 20,
+  marginBottom: 16,
+},
+searchBar: {
+  flexDirection: "row",
+  alignItems: "center",
+  borderRadius: 16,
+  borderWidth: 1.25,
+  borderColor: "#404040",
+  paddingHorizontal: 14,
+  paddingVertical: 10,
+  gap: 8,
+},
+searchBarInput: {
+  flex: 1,
+  fontSize: 15,
+  padding: 0,
+},
+searchResultCard: {
+  borderRadius: 14,
+  borderColor: "#00c3e6",
+  borderWidth: 1.25,                                                                                                 
+  padding: 14,      
+}, 
 
 
 });
