@@ -201,7 +201,7 @@ export default function HomeScreen() {
           <Text style={[styles.summaryLabel, { color: colors.text }]}>Cards</Text>
         </View>
         <View style={[styles.summaryItem, { backgroundColor: colors.card }]}>
-          <Text style={[styles.summaryNumber, { color: colors.text }]}>{summary.avgScore !== null ? `${Math.round(summary.avgScore * 100)}%` : "-"}</Text>
+          <Text style={[styles.summaryNumber, { color: colors.text }]}>{summary.avgScore !== null ? Math.round(summary.avgScore * 100) + "%" : "-"}</Text>
           <Text style={[styles.summaryLabel, { color: colors.text }]}>Avg Score</Text>
         </View>
       </View>
