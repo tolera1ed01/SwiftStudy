@@ -201,6 +201,11 @@ const styles = StyleSheet.create({
     borderWidth: 1.25,
     margin: 10,
   },
+  flashcardDeleteButton: {
+    position: "absolute",
+    top: 12,
+    right: 12,
+  },
   deckTitle: {
     paddingLeft: 30,
     paddingTop: 20,

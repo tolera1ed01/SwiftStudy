@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, Alert } from "react-native";
 import styles from "../stylesheet";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { collection, doc, onSnapshot, updateDoc, deleteDoc } from "firebase/firestore";
@@ -129,9 +129,18 @@ function FlashcardsScreen({ route }) {
   }, [uid, deckId]);
 
 
-  const Flashcard = ({ flashcard }) => (
+  const deleteFlashcard = async (index) => {
+    const updated = data.filter((_, i) => i !== index);
+    setData(updated);
+    await updateDoc(deckRef, { flashcards: updated });
+  };
+
+  const Flashcard = ({ flashcard, onDelete }) => (
     <TouchableOpacity style={[styles.Deck, { backgroundColor: colors.card }]} activeOpacity={0.8} >
       <Text style={[styles.deckTitle, {color: colors.text}]}>{flashcard.front}</Text>
+      <TouchableOpacity style={styles.flashcardDeleteButton} onPress={onDelete} activeOpacity={0.8}>
+        <AntDesign name="close" size={16} color={colors.text} />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 
@@ -141,7 +150,7 @@ function FlashcardsScreen({ route }) {
       {isVisible && <FlashcardTemplate onCreate={addFlashcard} />}
       <FlatList
         data={data}
-        renderItem={({ item }) => <Flashcard flashcard={item} />}
+        renderItem={({ item, index }) => <Flashcard flashcard={item} onDelete={() => Alert.alert("Delete flashcard", "Are you sure?", [{ text: "Cancel", style: "cancel" }, { text: "Delete", style: "destructive", onPress: () => deleteFlashcard(index) }])} />}
         keyExtractor={(_, index) => index.toString()}
       >
       </FlatList>
