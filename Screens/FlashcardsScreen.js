@@ -136,7 +136,7 @@ function FlashcardsScreen({ route }) {
   };
 
   const Flashcard = ({ flashcard, onDelete }) => (
-    <TouchableOpacity style={[styles.Deck, { backgroundColor: colors.card }]} activeOpacity={0.8} >
+    <TouchableOpacity style={[styles.Deck, { backgroundColor: colors.card }]} >
       <Text style={[styles.deckTitle, {color: colors.text}]}>{flashcard.front}</Text>
       <TouchableOpacity style={styles.flashcardDeleteButton} onPress={onDelete} activeOpacity={0.8}>
         <AntDesign name="close" size={16} color={colors.text} />
