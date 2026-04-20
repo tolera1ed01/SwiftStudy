@@ -470,9 +470,75 @@ searchBarInput: {
 searchResultCard: {
   borderRadius: 14,
   borderColor: "#00c3e6",
-  borderWidth: 1.25,                                                                                                 
-  padding: 14,      
-}, 
+  borderWidth: 1.25,
+  padding: 14,
+},
+summaryRow: {
+  flexDirection: "row",
+  paddingHorizontal: 20,
+  gap: 12,
+  marginBottom: 16,
+},
+summaryItem: {
+  flex: 1,
+  borderRadius: 12,
+  padding: 12,
+  alignItems: "center",
+},
+summaryNumber: {
+  fontSize: 22,
+  fontWeight: "700",
+},
+summaryLabel: {
+  fontSize: 12,
+  opacity: 0.5,
+  marginTop: 2,
+},
+streakText: {
+  paddingHorizontal: 20,
+  fontSize: 15,
+  fontWeight: "600",
+  marginBottom: 8,
+},
+scoreBadge: {
+  fontSize: 13,
+  fontWeight: "700",
+  color: "#00c3e6",
+  marginTop: 6,
+},
+reviseAnswerRow: {                                                                                                   
+  flexDirection: "row",
+  justifyContent: "center",                                                                                          
+  gap: 12,                 
+  paddingHorizontal: 20,
+  marginBottom: 8,      
+},                                                                                                                   
+reviseAnswerButton: {
+  flex: 1,                                                                                                           
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 8,                  
+  paddingVertical: 14,                                                                                               
+  borderRadius: 16,   
+},                                                                                                                   
+rememberedButton: {
+  backgroundColor: "#22c55e",
+},                           
+notRememberedButton: {
+  backgroundColor: "#ef4444",
+},                           
+reviseAnswerButtonText: {                                                                                            
+  color: "#fff",         
+  fontWeight: "600",                                                                                                 
+  fontSize: 15,     
+},             
+reviseProgressText: {
+  textAlign: "center",
+  fontSize: 13,
+  marginBottom: 12,                                                                                                  
+  opacity: 0.5,
+},         
 
 
 });

@@ -24,6 +24,8 @@ export default function LibraryScreen({isVisible}) {
         flashcards: [],
         createdAt: serverTimestamp(),
         lastRevised: null,
+        averageScore: null,
+        lastScoreUpdate: null
       });
       Alert.alert("Deck created with id:", docRef.id);
     } catch (error) {
