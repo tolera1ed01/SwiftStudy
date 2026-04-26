@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import styles from "../stylesheet";
 import { useNavigation, useTheme } from "@react-navigation/native";
-import { collection, doc, query, onSnapshot, where, orderBy, limit, collectionGroup, getDocs, getDoc } from "firebase/firestore";
+import { collection, doc, query, onSnapshot, where, orderBy, limit, collectionGroup, getDocs, getDoc, updateDoc } from "firebase/firestore";
 import { FlatList } from "react-native-gesture-handler";
 import { db, auth } from "../firebaseConfig";
 
