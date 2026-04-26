@@ -21,7 +21,7 @@ export default function ReviseScreen( {route} ) {
     const uid = auth.currentUser.uid;
     const deckRef = doc(db, "users", uid, "decks", deckId);
     updateDoc(deckRef, { lastRevised: serverTimestamp()})
-  })
+  }, [])
   
   useLayoutEffect( () => {
     navigation.setOptions({

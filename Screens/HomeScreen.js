@@ -12,6 +12,8 @@ const getEffectiveScore = (averageScore, lastScoreUpdate) => {
   return averageScore * Math.pow(0.95, days);
 };
 
+
+
 export default function HomeScreen() {
   const { colors } = useTheme();
   const navigation = useNavigation();
