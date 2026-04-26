@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import CreateScreen from "./FlashcardsScreen"
 import styles from '../stylesheet';
-import { Button, Touchable, TouchableOpacity, View, Text } from 'react-native';
+import { Button, Touchable, TouchableOpacity, View, Text, Alert } from 'react-native';
 import LibraryScreen from "./LibraryScreen";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation, useTheme } from '@react-navigation/native';
@@ -119,7 +119,7 @@ function Navbar({ isDark, toggleTheme}) {
         },
         tabBarStyle: {
           width: "100%",
-          height: "70",
+          height: 70,
           borderTopWidth: 0,
           paddingTop: 5,
           backgroundColor: isDark ? "#18191a" : "#f3f6ff",

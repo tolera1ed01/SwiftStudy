@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     width: "90%",
-    height: "50",
+    height: 50,
     marginTop: 20,
     borderWidth: 1.25,
   },
@@ -192,6 +192,16 @@ const styles = StyleSheet.create({
   },
 
   Deck: {
+    position: "relative",
+    width: windowWidth * 0.42,
+    height: windowHeight * 0.2,
+    borderRadius: 20,
+    backgroundColor: "rgba(54, 56, 57, 1)",
+    borderColor: "#00c3e6",
+    borderWidth: 1.25,
+    margin: 10,
+  },
+  Flashcard: {
     position: "relative",
     width: windowWidth * 0.8,
     height: windowHeight * 0.2,

@@ -21,7 +21,6 @@ function FlashcardsHeaderButton({ onPress }) {
 function OptionsButton({ onRename, onDelete }) {
   const { colors } = useTheme();
   const [open, setOpen] = useState(false);
-
   const toggleMenu = () => setOpen((prev) => !prev);
 
   return (
@@ -76,34 +75,36 @@ function FlashcardsScreen({ route }) {
   const [renameVisible, setRenameVisible] = useState(false);
   const [newTitle, setNewTitle] = useState(deckTitle);
 
-  const deckRef = doc(
-    collection(doc(collection(db, "users"), uid), "decks"),
-    deckId
-  );
+  const deckRef = doc(collection(doc(collection(db, "users"), uid), "decks"), deckId);
 
   const addFlashcard = async (front, back) => {
     const newCard = { front, back };
     const updated = [...data, newCard];
-    setData(updated);
+    setData(updated); //data is set first before adding to database so the flashcard is added right away to the screen instead of waiting for the database to update
     await updateDoc(deckRef, { flashcards: updated });
   };
 
   const handleRenameDeck = async () => {
     try {
-      await updateDoc(deckRef, { deckTitle: newTitle });
-      setRenameVisible(false);
+      await updateDoc(deckRef, { deckTitle: newTitle }); //gives the deck a new title in the database which will be updated in the app too.
+      setRenameVisible(false); //the rename pop up will be closed once the deck has been renamed.
     } catch (error) {
       Alert.alert("Error:", error.message);
     }
   };
 
   const handleDeleteDeck = async () => {
-    try {
-      await deleteDoc(deckRef);
-      navigation.goBack();
-    } catch (error) {
-      Alert.alert("Couldn't delete deck, Error:", error.message)
-    }
+    Alert.alert("Delete deck", "Are you sure? This will delete all flashcards in this deck.", [                        
+      { text: "Cancel", style: "cancel" },                                                                             
+      { text: "Delete", style: "destructive", onPress: async () => {
+        try {                                                                                                          
+          await deleteDoc(deckRef);                         
+          navigation.goBack();                                                                                         
+        } catch (error) {                                   
+          Alert.alert("Couldn't delete deck, Error:", error.message);
+        }                                                                                                              
+      }}
+    ]);                    
   }
 
 
@@ -121,24 +122,23 @@ function FlashcardsScreen({ route }) {
   }, [navigation, deckId, deckTitle, data, handleDeleteDeck]);
 
   useEffect(() => {
-    const unsub = onSnapshot(deckRef, (snap) => {
+    const unsub = onSnapshot(deckRef, (snap) => { //snapshot listener for the new flashcards being added
       const deck = snap.data();
-      setData(deck?.flashcards || []);
+      setData(deck?.flashcards || [] );
     });
     return () => unsub();
   }, [uid, deckId]);
 
 
   const deleteFlashcard = async (index) => {
-    const updated = data.filter((_, i) => i !== index);
-    setData(updated);
+    const updated = data.filter((_, i) => i !== index); //filters out the deleted flashcard from the local array the user is seeing, then the array in the database gets updated to the new version.
     await updateDoc(deckRef, { flashcards: updated });
   };
 
   const Flashcard = ({ flashcard, onDelete }) => (
-    <TouchableOpacity style={[styles.Deck, { backgroundColor: colors.card }]} activeOpacity={0.8} >
-      <Text style={[styles.deckTitle, {color: colors.text}]}>{flashcard.front}</Text>
-      <TouchableOpacity style={styles.flashcardDeleteButton} onPress={onDelete} activeOpacity={0.8}>
+    <TouchableOpacity style={[styles.Flashcard, { backgroundColor: colors.card }]} activeOpacity={0.8} >
+      <Text style={[styles.deckTitle, {color: colors.text}]} numberOfLines={2} ellipsizeMode="tail">{flashcard.front}</Text>
+      <TouchableOpacity style={styles.flashcardDeleteButton} onPress={onDelete} activeOpacity={0.8}> 
         <AntDesign name="close" size={16} color={colors.text} />
       </TouchableOpacity>
     </TouchableOpacity>
@@ -155,7 +155,7 @@ function FlashcardsScreen({ route }) {
       >
       </FlatList>
 
-      {renameVisible && (
+      {renameVisible && ( //if the rename deck button was pressed, then this part of the UI will be rendered to be able to rename the deck.
         <View style={styles.renameOverlay}>
           <View style={styles.renameBox}>
             <Text style={styles.renameTitle}>Rename deck</Text>

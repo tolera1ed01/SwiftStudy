@@ -20,7 +20,7 @@ export default function LoginScreen() {
       await signInWithEmailAndPassword(auth, email, password)
         navigation.navigate("HomeScreen") //Takes user to HomeScreen upon successful login
     } catch(error) {
-      Alert.alert("Login error:",error.message) 
+      Alert.alert("Invalid Credentials, check the entered email and or password") 
     }
   }
 
