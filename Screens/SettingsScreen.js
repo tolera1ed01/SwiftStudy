@@ -5,7 +5,7 @@ import { Switch } from "react-native-gesture-handler";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { auth } from "../firebaseConfig";
 import { Alert } from "react-native";
-import { updateEmail, updateProfile } from "firebase/auth";
+import { signOut, updateEmail, updateProfile } from "firebase/auth";
 
 export default function SettingsScreen({ isDark, toggleTheme }) {
   const { colors } = useTheme();
@@ -61,6 +61,11 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
       Alert.alert("Error deleting account", error.message)
     }
   };
+
+  const signoutUser = async () => {
+    navigation.navigate("LoginScreen");
+    await signOut(auth);
+  }
 
   return (
     <SafeAreaView style={[styles.settingsContainer, { backgroundColor: colors.background }]}>
@@ -134,6 +139,17 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
             activeOpacity={0.8}
           >
             <Text style={styles.changeEmailButtonText}>Update</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[styles.settingsRow, { backgroundColor: colors.card }]}>
+          <View>
+            <Text style={[styles.settingsRowTitle, { color: colors.text }]}>Sign out of swiftstudy</Text>
+            <Text style={[styles.settingsRowSubtitle, { color: colors.placeholderText || "#6a6a6a" },]}>
+              Sign out of your account
+            </Text>
+          </View>
+          <TouchableOpacity onPress={signoutUser} style={styles.signoutButton}  activeOpacity={0.8}>
+            <Text style={styles.signoutButtonText}>Sign out</Text>
           </TouchableOpacity>
         </View>
       </View>

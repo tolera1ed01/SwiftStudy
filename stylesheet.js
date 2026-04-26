@@ -554,7 +554,18 @@ reviseProgressText: {
   marginBottom: 12,                                                                                                  
   opacity: 0.5,
 },         
-
+signoutButton: {
+  alignSelf: "center",
+  paddingHorizontal: 14,
+  paddingVertical: 8,
+  borderRadius: 999,
+  backgroundColor: "#00c3e6",
+},
+signoutButtonText: {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: 14,
+},
 
 });
 
