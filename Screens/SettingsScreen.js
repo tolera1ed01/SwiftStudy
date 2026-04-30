@@ -113,7 +113,7 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
           </View>
 
           <TouchableOpacity
-            onPress={handleChangeEmail}
+            onPress={() => handleChangeEmail(newEmail)}
             style={styles.changeEmailButton}
             activeOpacity={0.8}
           >
@@ -134,7 +134,7 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
           </View>
 
           <TouchableOpacity
-            onPress={handleChangeUsername}
+            onPress={() => handleChangeUsername(newUsername)}
             style={styles.changeEmailButton}
             activeOpacity={0.8}
           >
