@@ -1,7 +1,7 @@
 import React, { useState } from "react"; 
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import styles from "../stylesheet";
-import { Switch } from "react-native-gesture-handler";
+import { ScrollView, Switch } from "react-native-gesture-handler";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { auth } from "../firebaseConfig";
 import { Alert } from "react-native";
@@ -68,7 +68,7 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
   }
 
   return (
-    <SafeAreaView style={[styles.settingsContainer, { backgroundColor: colors.background }]}>
+    <ScrollView style={[styles.settingsContainer, { backgroundColor: colors.background }]}>
       <Text style={[styles.settingsHeaderText, { color: colors.text }]}>
         Settings
       </Text>
@@ -114,7 +114,7 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
 
           <TouchableOpacity
             onPress={() => handleChangeEmail(newEmail)}
-            style={styles.changeEmailButton}
+            style={styles.changeEmailButton} 
             activeOpacity={0.8}
           >
             <Text style={styles.changeEmailButtonText}>Update</Text>
@@ -153,6 +153,6 @@ export default function SettingsScreen({ isDark, toggleTheme }) {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
