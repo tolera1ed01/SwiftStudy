@@ -1,6 +1,11 @@
 # SwiftStudy
 
-SwiftStudy is a flashcard app made for mobile.
+SwiftStudy is a flashcard revision app made for mobile.
+
+## Context
+
+I developed SwiftStudy as part of my computer science NEA project. 
+My goal was to create a solution to paper flashcards that are inefficient and had no way of tracking progress long term.
 
 ## Features
 
@@ -30,3 +35,4 @@ cd swiftstudy
 npm install
 # or
 yarn install
+
