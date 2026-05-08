@@ -1,32 +1,23 @@
 # SwiftStudy
 
-SwiftStudy is a mobile flashcard revision app built with Expo and React Native.  
-It allows you to create decks and flashcards to revise.
+SwiftStudy is a flashcard app made for mobile.
 
 ## Features
 
-- Create and manage multiple **decks**
-- Add, edit, and delete **flashcards** in each deck
-- Simple **revise mode** with front/back flipping
-- Persistent storage using **Firebase Firestore**
-- Dark‑themed, mobile‑friendly UI
+- Create decks that are stored separate for each user
+- Create flashcards in those decks
+- Keep track of revision streaks and average score of a deck
+- Account creation to store created decks and flashcards
+- A revision mode to review flashcards
+- Able to swap between light and dark theme (Dark theme by default)
 
 ## Tech Stack
 
 - React Native (Expo)
 - JavaScript / JSX
 - React Navigation
-- Firebase Authentication
+- Firebase Auth
 - Firebase Firestore
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (LTS)
-- npm or yarn
-- Expo CLI (`npm install -g expo-cli`)
-- A Firebase project (Web config + Firestore enabled)
 
 ### Installation
 
